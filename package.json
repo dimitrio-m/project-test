@@ -1,0 +1,40 @@
+{
+  "name": "project-test",
+  "version": "0.0.1",
+  "description": "Este proyecto es una aplicación web para crear una comunidad privada donde se comparte contenido.",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimitrio-m/project-test.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "mongodb",
+    "posts",
+    "login",
+    "signup"
+  ],
+  "author": "Dimitrio Mandamadiotis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dimitrio-m/project-test/issues"
+  },
+  "homepage": "https://github.com/dimitrio-m/project-test#readme",
+  "dependencies": {
+    "body-parser": "^1.17.0",
+    "connect-ensure-login": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "debug": "^2.6.1",
+    "express": "^4.15.0",
+    "express-session": "^1.15.1",
+    "morgan": "^1.8.1",
+    "passport": "^0.3.2",
+    "passport-auth0": "^0.6.0",
+    "pug": "^2.0.0-beta11"
+  }
+}
