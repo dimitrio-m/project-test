@@ -30,10 +30,10 @@ html(lang='es')
           form(method='POST', action='/login')
             .form-group
               label(for='email') Email
-              input#email.form-control(type='email', placeholder='Email', name='email')
+              input#email.form-control(type='email', placeholder='pedro.ramirez@email.com', name='email')
             .form-group
               label(for='password') Contraseña
-              input#password.form-control(type='password', placeholder='Password')
+              input#password.form-control(type='password', placeholder='Password', name="password")
             p.bg-danger.text-danger.text-center Contraseña incorrecta.
             button.btn.btn-primary(type='submit') Enviar
             a.btn.btn-default(href='/signup', role='button') Registrarse
