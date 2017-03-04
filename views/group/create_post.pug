@@ -4,7 +4,7 @@ block content
     li
       a(href='/grupo') Inicio
     li.active Crear Post
-  form(method='POST', action='/signup')
+  form(method='POST', action='/:group/create_post')
     .form-group
       label(for='title') Título
       input#title.form-control(type='text', placeholder='Viaje a la islas...', name='title')
