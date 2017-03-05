@@ -12,6 +12,6 @@ block content
             img(src=`data:${post.picture.fileType};base64,${post.picture.data.toString('base64')}`, alt='img')
           .caption
             h3= post.title
-            p= post.text
+            p= post.text.length > 100 ? post.text.substring(0, 100) + '...': post.text
             p
               a.btn.btn-primary(href=`/${group}/${category}/${post._id}`, role='button') Leer mas...
