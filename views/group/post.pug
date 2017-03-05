@@ -9,7 +9,8 @@ block content
   .page-header
     h1= post.title
       p.small=post.author
-  img.img-responsive(src=`data:${post.picture.fileType};base64,${post.picture.data.toString('base64')}`, alt='img')
+  if post.picture.fileType !== null
+    img.img-responsive(src=`data:${post.picture.fileType};base64,${post.picture.data.toString('base64')}`, alt='img')
   p.lead(style='margin-top:1em;')= post.text
   ul.list-group
     li.list-group-item

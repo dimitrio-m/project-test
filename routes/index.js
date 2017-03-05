@@ -23,24 +23,33 @@ module.exports = function(router, passport) {
   }));
 
   router.get('/signup', function(req, res) {
-    res.render('signup', { groups: groups });
+    res.render('signup', { groups: groups, message: '' });
   });
 
   router.post('/signup', multer.single('avatar'), function(req, res, next) {
 
-    const newUser = new User();
-    newUser.email = req.body.email;
-    newUser.firstname = req.body.firstname;
-    newUser.lastname = req.body.lastname;
-    newUser.group = groups.indexOf(req.body.group);
-    newUser.avatar.fileType = req.file.mimetype;
-    newUser.avatar.data = req.file.buffer;
-    newUser.gender = req.body.gender;
-    newUser.password = newUser.generateHash(req.body.password);
-    console.log(req.file);
-    newUser.save((err) => {
+    User.find({email: req.body.email}, (err, doc) => {
       if(err) next(err);
-      else res.redirect('/login');
+      else {
+        if(!doc) {
+          const newUser = new User();
+          newUser.email = req.body.email;
+          newUser.firstname = req.body.firstname;
+          newUser.lastname = req.body.lastname;
+          newUser.group = groups.indexOf(req.body.group);
+          newUser.avatar.fileType = req.file.mimetype;
+          newUser.avatar.data = req.file.buffer;
+          newUser.gender = req.body.gender;
+          newUser.password = newUser.generateHash(req.body.password);
+          console.log(req.file);
+          newUser.save((err) => {
+            if(err) next(err);
+            else res.redirect('/login');
+          });
+        } else {
+          res.render('signup', { groups: groups, message: 'Ese correo ya tiene una cuenta asociada.' });
+        }
+      }
     });
   });
 
@@ -82,8 +91,12 @@ module.exports = function(router, passport) {
     const newPost = new Post();
     newPost.title = req.body.title;
     newPost.text = req.body.text;
-    newPost.picture.fileType = req.file.mimetype;
-    newPost.picture.data = req.file.buffer;
+    if(req.file) {
+      newPost.picture.fileType = req.file.mimetype;
+      newPost.picture.data = req.file.buffer;
+    } else {
+      newPost.picture.fileType = null;
+    }
     newPost.author = req.body.author;
     newPost.group = groups.indexOf(req.params.group);
     newPost.category = categories.indexOf(req.body.category);

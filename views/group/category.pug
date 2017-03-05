@@ -8,7 +8,8 @@ block content
     each post in posts
       .col-sm-6.col-md-4
         .thumbnail
-          img(src=`data:${post.picture.fileType};base64,${post.picture.data.toString('base64')}`, alt='img')
+          if post.picture.fileType !== null
+            img(src=`data:${post.picture.fileType};base64,${post.picture.data.toString('base64')}`, alt='img')
           .caption
             h3= post.title
             p= post.text

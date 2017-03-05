@@ -63,9 +63,11 @@ html(lang='es')
                 each group in groups
                   option= group
             .form-group
-              label.btn.btn-primary(for='photo')
-                input#photo(type='file', style='display:none;', name='avatar', required)
-                | Buscar foto
+              label(for='photo').btn.btn-primary Subir Foto
+              input#photo(type='file', name='avatar', required, style='display:none')
+              p.help-block Todos los campos son requeridos.
+            if message.length > 0
+              p.bg-danger.text-danger.text-center=message
             button.btn.btn-primary(type='submit') Enviar
             a.btn.btn-default(href='/login', role='button') Ingresar
     script(src='/js/jquery.min.js')
