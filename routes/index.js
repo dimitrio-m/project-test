@@ -31,7 +31,8 @@ module.exports = function(router, passport) {
     User.find({email: req.body.email}, (err, doc) => {
       if(err) next(err);
       else {
-        if(!doc) {
+        console.log(doc);
+        if(doc.length === 0) {
           const newUser = new User();
           newUser.email = req.body.email;
           newUser.firstname = req.body.firstname;
