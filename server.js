@@ -10,7 +10,7 @@ const connectMongo = require('connect-mongo');
 const flash = require('connect-flash');
 const compression = require('compression');
 const helmet = require('helmet');
-
+const busboy = require('connect-busboy');
 const pass = require('./passport');
 const routes = require('./routes/index');
 const User = require('./models/User');
@@ -18,7 +18,7 @@ const User = require('./models/User');
 const app = express();
 const MongoStore = connectMongo(session);
 
-mongoose.Promise = global.Promise;
+mongoose.Promise = require('bluebird');
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/project-test');
 
 app.set('views', path.join(__dirname, 'views'));
@@ -42,6 +42,7 @@ app.use(express.static(path.join(__dirname, 'public'), {
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.use(busboy());
 
 pass(passport);
 routes(app, passport);

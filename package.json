@@ -27,8 +27,10 @@
   "homepage": "https://github.com/dimitrio-m/project-test#readme",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.5.0",
     "body-parser": "^1.17.0",
     "compression": "^1.6.2",
+    "connect-busboy": "0.0.2",
     "connect-ensure-login": "^0.1.1",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^1.3.2",

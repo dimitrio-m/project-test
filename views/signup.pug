@@ -38,26 +38,34 @@ html(lang='es')
           form(method='POST', action='/signup')
             .form-group
               label(for='firstname') Nombre
-              input#firstname.form-control(type='text', placeholder='Pedro', name='firstname')
+              input#firstname.form-control(type='text', placeholder='Pedro', name='firstname', required)
             .form-group
               label(for='lastname') Apellido
-              input#lastname.form-control(type='text', placeholder='Ramirez', name='lastname')
+              input#lastname.form-control(type='text', placeholder='Ramirez', name='lastname', required)
             .form-group
               label(for='email') Email
-              input#email.form-control(type='email', placeholder='pedro.ramirez@email.com', name='email')
+              input#email.form-control(type='email', placeholder='pedro.ramirez@email.com', name='email', required)
             .form-group
               label(for='password') Contraseña
-              input#password.form-control(type='password', placeholder='Password', name='password')
+              input#password.form-control(type='password', placeholder='Password', name='password', required)
             .form-group
-              label(for='passwordRepeat') Repetir Contraseña
-              input#passwordRepeat.form-control(type='password', placeholder='Password', name='passwordRepeat')
+              .radio
+                label
+                  input#male(type='radio', name='gender', value='male', checked)
+                  |     Masculino
+              .radio
+                label
+                  input#female(type='radio', name='gender', value='female')
+                  |     Femenino
             .form-group
               label(for='group') Grupo
-              select#group.form-control
-                option Grupo 1
-                option Grupo 2
-                option Grupo 3
-            p.bg-danger.text-danger.text-center Contraseña incorrecta.
+              select#group.form-control(name='group', required)
+                each group in groups
+                  option= group
+            .form-group
+              label.btn.btn-primary(for='photo')
+                input#photo(type='file', style='display:none;', name='avatar', required)
+                | Buscar foto
             button.btn.btn-primary(type='submit') Enviar
             a.btn.btn-default(href='/login', role='button') Ingresar
     script(src='/js/jquery.min.js')

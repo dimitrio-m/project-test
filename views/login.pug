@@ -21,6 +21,14 @@ html(lang='es')
       .bg-danger {
         padding: 10px;
       }
+      .panel {
+        width: 30%
+      }
+      @media (max-width: 768px) {
+        .panel {
+          width: 100%;
+        }
+      }
   body
     .container
       .panel.panel-default
@@ -34,7 +42,8 @@ html(lang='es')
             .form-group
               label(for='password') Contraseña
               input#password.form-control(type='password', placeholder='Password', name="password")
-            p.bg-danger.text-danger.text-center Contraseña incorrecta.
+            if message.length > 0
+              p.bg-danger.text-danger.text-center=message
             button.btn.btn-primary(type='submit') Enviar
             a.btn.btn-default(href='/signup', role='button') Registrarse
     script(src='/js/jquery.min.js')

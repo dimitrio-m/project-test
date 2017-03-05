@@ -1,14 +1,17 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
+mongoose.Promise = require('bluebird');
 
 const userSchema = mongoose.Schema({
   email: String,
   password: String,
   firstname: String,
   lastname: String,
-  group: String,
+  group: Number,
   posts: [String],
-  comments: [String]
+  comments: [String],
+  gender: String,
+  avatar: String
 });
 
 userSchema.methods.generateHash = function(password) {
