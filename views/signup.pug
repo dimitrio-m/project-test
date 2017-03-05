@@ -35,7 +35,7 @@ html(lang='es')
         .panel-heading
           h3.panel-title Registro
         .panel-body
-          form(method='POST', action='/signup')
+          form(method='POST', action='/signup', enctype="multipart/form-data")
             .form-group
               label(for='firstname') Nombre
               input#firstname.form-control(type='text', placeholder='Pedro', name='firstname', required)

@@ -11,7 +11,10 @@ const userSchema = mongoose.Schema({
   posts: [String],
   comments: [String],
   gender: String,
-  avatar: String
+  avatar: {
+    fileType: String,
+    data: Buffer
+  }
 });
 
 userSchema.methods.generateHash = function(password) {

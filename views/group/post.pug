@@ -2,23 +2,21 @@ extends layout
 block content
   ol.breadcrumb
     li
-      a(href='/grupo') Inicio
+      a(href='/group') Inicio
     li
-      a(href='/grupo') Categoría
-    li.active Post
+      a(href=`/${group}/${category}`)= category
+    li.active= post.title
   .page-header
-    h1
-      | Título del Post
-      small &nbsp Dimitrio el 12/12/12
-  img.img-responsive(src='https://placehold.it/1024x576', alt='...')
-  p.lead(style='margin-top:1em;') Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    h1= post.title
+      p.small=post.author
+  img.img-responsive(src=`data:${post.picture.fileType};base64,${post.picture.data.toString('base64')}`, alt='img')
+  p.lead(style='margin-top:1em;')= post.text
   ul.list-group
     li.list-group-item
-      form(method='POST', action='/:group/:category/:post/coment')
+      form(method='POST', action=`/${group}/${category}/${post._id}/coment`)
         .form-group
-          label(for='comment') Comentar &nbsp
           textarea#comment.form-control(type='text', placeholder='Muy buen post...', name='comment', rows='2')
-    li.list-group-item Dapibus ac facilisis in
-    li.list-group-item Morbi leo risus
-    li.list-group-item Porta ac consectetur ac
-    li.list-group-item Vestibulum at eros
+          input(type='text', name='authorComment', value=user.firstname, hidden)
+        button.btn.btn-primary(type='submit', style='margin-bottom:1em;') Comentar
+    each comment in post.comments
+      li.list-group-item= comment

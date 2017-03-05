@@ -2,24 +2,23 @@ extends layout
 block content
   ol.breadcrumb
     li
-      a(href='/grupo') Inicio
+      a(href='/group') Inicio
     li.active Crear Post
-  form(method='POST', action='/:group/create_post')
+  form(method='POST', action=`/${group}/create_post`, enctype="multipart/form-data")
     .form-group
       label(for='title') Título
-      input#title.form-control(type='text', placeholder='Viaje a la islas...', name='title')
+      input#title.form-control(type='text', placeholder='Viaje a la islas...', name='title', required)
     .form-group
       label(for='text') Contenido
-      textarea#text.form-control(type='text', placeholder='...', name='text', rows='3')
+      textarea#text.form-control(type='text', placeholder='...', name='text', rows='3', required)
     .form-group
       label.btn.btn-primary(for='photo')
-        input#photo(type='file', style='display:none;', name='photo')
+        input#photo(type='file', style='display:none;', name='picture')
         | Buscar foto #[span.small (opcional)]
     .form-group
       label(for='category') Categoría
-      select#category.form-control
-        option Categoría 1
-        option Categoría 2
-        option Categoría 3
-    p.bg-danger.text-danger.text-center(style='padding:10px;') No puso contenido.
+      select#category.form-control(name='category', required)
+        each cat in categories
+          option= cat
+      input(type='text', name='author', value=`${user.firstname} ${user.lastname}`, hidden)
     button.btn.btn-primary(type='submit', style='margin-bottom:1em;') Guardar

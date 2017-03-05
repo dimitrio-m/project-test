@@ -2,31 +2,15 @@ extends layout
 block content
   ol.breadcrumb
     li
-      a(href='/grupo') Inicio
-    li.active Categoria 1
+      a(href='/group') Inicio
+    li.active= category
   .row
-    .col-sm-6.col-md-4
-      .thumbnail
-        img(src='https://placehold.it/1024x576', alt='...')
-        .caption
-          h3 Título del Post
-          p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          p
-            a.btn.btn-primary(href='#', role='button') Leer mas...
-    .col-sm-6.col-md-4
-      .thumbnail
-        img(src='https://placehold.it/1024x576', alt='...')
-        .caption
-          h3 Título del Post
-          p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          p
-            a.btn.btn-primary(href='#', role='button') Leer mas...
-
-    .col-sm-6.col-md-4
-      .thumbnail
-        img(src='https://placehold.it/1024x576', alt='...')
-        .caption
-          h3 Título del Post
-          p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          p
-            a.btn.btn-primary(href='#', role='button') Leer mas...
+    each post in posts
+      .col-sm-6.col-md-4
+        .thumbnail
+          img(src=`data:${post.picture.fileType};base64,${post.picture.data.toString('base64')}`, alt='img')
+          .caption
+            h3= post.title
+            p= post.text
+            p
+              a.btn.btn-primary(href=`/${group}/${category}/${post._id}`, role='button') Leer mas...
